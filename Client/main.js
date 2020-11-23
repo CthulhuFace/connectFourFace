@@ -29,8 +29,8 @@ function initBoard() {
 }
 
 function startConnection() {
-    //var ws_uri = "ws://connectfourface.herokuapp.com/:24803";
-    var ws_uri = "ws://127.0.0.1:9601";
+    var ws_uri = "ws://connectfourface.herokuapp.com/:24803";
+    //var ws_uri = "ws://127.0.0.1:9601";
     websocket = new WebSocket(ws_uri);
     if ($("#codeInputText").val().trim()) {
         passcode = $("#codeInputText").val();
