@@ -2,6 +2,11 @@
 
 $(function () {
     $(".overlay").show();
+    initBoard();
+});
+
+$(window).on("unload", function () {
+    ws.close();
 });
 
 
@@ -12,11 +17,21 @@ function sendChoice(choice) {
     }
 }
 
+function initBoard() {
+    for (let w = 0; w < 7; w++) {
+        var html = "<div id=\"tableCol" + w + "\" class=\"tableCol\" onclick=\"sendChoice(" + w + ")\">";
+        for (let h = 0; h < 6; h++) {
+            html += "<div class=\"tableCell\"> <div id=\"cell" + w + "." + h + "\"></div></div>";
+        }
+        html += "</div>";
+        $("#tableBody").append(html);
+    }
+}
 
 function startConnection() {
-    var ws_uri = "ws://192.168.1.100:9601";
+    //var ws_uri = "ws://connectfourface.herokuapp.com/:24803";
+    var ws_uri = "ws://127.0.0.1:9601";
     websocket = new WebSocket(ws_uri);
-
     if ($("#codeInputText").val().trim()) {
         passcode = $("#codeInputText").val();
     } else passcode = randomString();
@@ -32,7 +47,6 @@ function startConnection() {
     websocket.onopen = function (event) {
         var data = { type: "session", name: name, passcode: passcode };
         websocket.send(JSON.stringify(data));
-        isClickable = true;
         $("#info").text("Waiting for opponent... (Passcode: " + passcode + ")");
     };
 
@@ -46,17 +60,22 @@ function startConnection() {
             case "BoardUpdate":
                 printBoard(response.board);
                 break;
+            case "sessionConfirmation":
+                $("#color").attr("class", ((response.color === 1) ? "tableValueYell" : "tableValueRed"));
+                document.title = response.name;
+                isClickable = true;
+                break;
             case "gameOver":
                 $("#info").text(response.winner + " has won.");
+                calculateResult(response.reason);
                 isClickable = false;
                 break;
             case "info":
                 if (response.code == "i_Turn") {
                     $(".lblTurn").show();
-                    $("#turnColor").attr("class", ((response.turnColor === 1)? "tableValueYell" : "tableValueRed"));
-                    $("#color").attr("class", ((response.color === 1)? "tableValueYell" : "tableValueRed"));
+                    $("#turnColor").attr("class", ((response.turnColor === 1) ? "tableValueYell" : "tableValueRed"));
                     $("#info").text("It's " + response.turnName + "' turn");
-                 } else {
+                } else {
                     $("#info").text(response.msg);
                 } break;
             case "error":
@@ -69,20 +88,27 @@ function startConnection() {
 
 }
 
+function calculateResult(reason) {
+    var x = reason.x;
+    var y = reason.y;
+    console.log(x);
+    console.log(y);
+    for (let i = 0; i < 4; i++) {
+        console.log("#cell" + y[i] + "." + x[i]);
+        document.getElementById("cell" + y[i] + "." + x[i]).classList.add("animationLoop");
+    }   
+}
 
 function printBoard(board) {
     for (i = 0; i < 7; i++) {
-        var strHTML = "";
-        $("#tableCol" + i).empty();
         for (l = 0; l < 6; l++) {
             if (board[l][i] == 1) {
-                strHTML += "<div class=\"tableCell\"><div class=\"tableValueYell\"></div></div>"
+                document.getElementById("cell" + i + "." + l).className = "tableValueYell";
             }
             else if (board[l][i] == 2) {
-                strHTML += "<div class=\"tableCell\"><div class=\"tableValueRed\"></div></div>"
+                document.getElementById("cell" + i + "." + l).className = "tableValueRed";
             }
         }
-        $("#tableCol" + i).append(strHTML);
     }
 }
 
