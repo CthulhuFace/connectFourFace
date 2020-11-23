@@ -15,15 +15,13 @@
             <input type="text" id="nameInputText" class="inputText" placeholder="Player name">
             <input type="text" id="codeInputText" class="inputText"
                 placeholder="Passcode (Leave empty to automatically generate)">
-            <div>
+            <div class="btnWrapper">
                 <ul>
                     <li>
                         <a href="#">
                             <span onclick="startConnection()"></span>
                             <span onclick="startConnection()"></span>
-                            <span onclick="startConnection()"></span>
-                            <span onclick="startConnection()"></span>
-                            <span class="popUpBtn" onclick="startConnection()">START</span>
+                            <span onclick="startConnection()">START</span>
                         </a>
                     </li>
                 </ul>
@@ -31,26 +29,38 @@
         </div>
     </div>
 
+    <div class="gameScreen">
 
-    <div class="UI">
-        <div id=tableBody class="box">
-            <div id=tableCol0 class="tableCol" onclick="sendChoice(0)">
+        <div class="floatLeft">
+            <label id="labelColor" for="colorBox" class="lblTurn">Your color:</label>
+            <div name="colorBox" id="colorBox" class="colorDisplay">
+                <div id="color" class=""></div>
             </div>
-            <div id=tableCol1 class="tableCol" onclick="sendChoice(1)">
-            </div>
-            <div id=tableCol2 class="tableCol" onclick="sendChoice(2)">
-            </div>
-            <div id=tableCol3 class="tableCol" onclick="sendChoice(3)">
-            </div>
-            <div id=tableCol4 class="tableCol" onclick="sendChoice(4)">
-            </div>
-            <div id=tableCol5 class="tableCol" onclick="sendChoice(5)">
-            </div>
-            <div id=tableCol6 class="tableCol" onclick="sendChoice(6)">
+            <label id="labelTurnColor" for="turnColorBox" class="lblTurn">Turn color:</label>
+            <div name="turnColorBox" id="turnColorBox" class="colorDisplay">
+                <div id="turnColor" class=""></div>
             </div>
         </div>
 
-        <h1 id="info" class="info"></h1>
+        <div class="UI">
+            <div id=tableBody class="box">
+                <div id=tableCol0 class="tableCol" onclick="sendChoice(0)">
+                </div>
+                <div id=tableCol1 class="tableCol" onclick="sendChoice(1)">
+                </div>
+                <div id=tableCol2 class="tableCol" onclick="sendChoice(2)">
+                </div>
+                <div id=tableCol3 class="tableCol" onclick="sendChoice(3)">
+                </div>
+                <div id=tableCol4 class="tableCol" onclick="sendChoice(4)">
+                </div>
+                <div id=tableCol5 class="tableCol" onclick="sendChoice(5)">
+                </div>
+                <div id=tableCol6 class="tableCol" onclick="sendChoice(6)">
+                </div>
+            </div>
+            <h1 id="info" class="info"></h1>
+        </div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="text/javascript" src="main.js"></script>

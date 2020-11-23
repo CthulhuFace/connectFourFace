@@ -1,7 +1,6 @@
 var WebSocketServer = require("ws").Server;
 const logger = require("pino")();
 
-
 const port = 9601;
 
 var wss = new WebSocketServer({ port: port });
@@ -81,7 +80,7 @@ function handleSession(pass, data, ws) {
         var session = pendingMap.get(pass);
         clearTimeout(pendingMap.get(pass).timer);
         pendingMap.delete(pass);
-        session.clients.push({ socket: ws, name: data.name, color: 1, colorName: "YELLOW" });
+        session.clients.push({ socket: ws, name: data.name, color: 1, colorName: "yellow" });
         session.properties.playerTurn = session.clients[Math.round(Math.random())];
         ongoingMap.set(pass, session);
         logger.info("Session moved from waiting list to active list (passcode: " + pass + ", player0 : "
@@ -97,7 +96,7 @@ function handleSession(pass, data, ws) {
         }));
     } else {
         var sessionInstance = {
-            clients: [{ socket: ws, name: data.name, color: 2, colorName: "RED" }],
+            clients: [{ socket: ws, name: data.name, color: 2, colorName: "red" }],
             gameBoard: new gameBoard(),
             passcode: pass,
             properties: {},
@@ -162,10 +161,16 @@ function endSession(passcode, winner) {
 function updateTurnInfo(session) {
     session.properties.playerTurn = session.clients[(session.properties.playerTurn == session.clients[0]) ? 1 : 0];
     var jsonInfo = {
-        type: "info", msg:""
+        type: "info", 
+        code:"i_Turn",
+        color: null,
+        turnColor: null,
+        turnName: null
     };
     for (var index = 0; index < 2; index++) {
-        jsonInfo.msg = "Your color(" + session.clients[index].colorName + ").Player turn:" + session.properties.playerTurn.name;
+        jsonInfo.color = session.clients[index].color
+        jsonInfo.turnColor = session.properties.playerTurn.color;
+        jsonInfo.turnName = session.properties.playerTurn.name;
         session.clients[index].socket.send(JSON.stringify(jsonInfo));
     }
 }

@@ -2,19 +2,14 @@
 
 $(function () {
     $(".overlay").show();
-
-    $("body").on("click", function (event) {
-    });
-    isClickable = false;
 });
 
 
 function sendChoice(choice) {
-    if (isClickable) {
+    if (isClickable === true) {
         var data = { type: "choice", passcode: passcode, value: choice };
         websocket.send(JSON.stringify(data));
     }
-    else(console.log(isClickable=false));
 }
 
 
@@ -56,10 +51,15 @@ function startConnection() {
                 isClickable = false;
                 break;
             case "info":
-                $("#info").text(response.msg);
-                break;
+                if (response.code == "i_Turn") {
+                    $(".lblTurn").show();
+                    $("#turnColor").attr("class", ((response.turnColor === 1)? "tableValueYell" : "tableValueRed"));
+                    $("#color").attr("class", ((response.color === 1)? "tableValueYell" : "tableValueRed"));
+                    $("#info").text("It's " + response.turnName + "' turn");
+                 } else {
+                    $("#info").text(response.msg);
+                } break;
             case "error":
-                isClickable = false;
                 $("#info").text(response.error);
                 break;
             default:
