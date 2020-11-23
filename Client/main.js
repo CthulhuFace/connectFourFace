@@ -29,7 +29,7 @@ function initBoard() {
 }
 
 function startConnection() {
-    var ws_uri = "ws://connectfourface.herokuapp.com/:9601";
+    var ws_uri = "wss://connectfourface.herokuapp.com/";
     //var ws_uri = "ws://127.0.0.1:9601";
     websocket = new WebSocket(ws_uri);
     if ($("#codeInputText").val().trim()) {

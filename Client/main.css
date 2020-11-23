@@ -34,14 +34,14 @@
   border: 0;
   border-bottom: 2px solid #9b9b9b;
   outline: 0;
-  font-size: 2vw;
+  font-size: calc(8px + 1.8vw);
   font-weight: 900;
   color: #0D1B1E;
   padding: 7px;
   background: transparent;
 }
 .inputText::placeholder {
-  font-size: 1.5vw;
+  font-size: calc(8px + 1.3vw);
   font-weight: 900;
   transition: .5s;
   color: #2222229c;
@@ -83,7 +83,7 @@ ul li span {
   text-align: center;
   color: #F7B2B7;
   font-family: IBM Plex Sans;
-  font-size: 3vw !important;
+  font-size: calc(8px + 2vw) !important;
   transition: .7s ease-out;
 }
 
@@ -167,7 +167,7 @@ ul li:nth-child(1):hover span {
   font-family: inherit;
   margin: 10px;
   border: 0 2px solid #0D1B1E;
-  font-size: 2vw;
+  font-size: calc(8px + 1.8vw);
   font-weight: 900;
   color: #9b9b9b;
   padding: 7px;
