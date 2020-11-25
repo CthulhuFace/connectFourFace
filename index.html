@@ -48,22 +48,23 @@
         </div>
     </div>
 
-    <div class="container-fluid d-flex justify-content-between">
-        <div class="jumbotron" style="min-width: 30vw; height: fit-content; margin-top: 3%; margin-left: 3%;">
-            <span id="lblPl" class="badge badge-secondary invisible">You: </span>
+    <div class="container d-flex justify-content-center flex-column">
+        <div class="d-inline-flex centerMargin">
+            <span id="lblPl" class="badge badge-secondary invisible" style="height: fit-content;">You: </span>
             <div class="colorDisplay">
                 <div id="pColor"></div>
             </div>
-            <span id="lblTu" class="badge badge-secondary invisible">Turn:</span>
+            <span id="lblTu" class="badge badge-secondary invisible" style="height: fit-content;">Turn:</span>
             <div class="colorDisplay">
                 <div id="tColor"></div>
             </div>
-            <div class="text-center d-flex justify-content-between">
-                <p id="info"></p>
-                <div id="spinner" class="spinner-border invisible" role="status">
-                </div>
+        </div>
+        <div class="text-center d-flex justify-content-between centerMargin">
+            <p id="info"></p>
+            <div id="spinner" class="spinner-border invisible" role="status">
             </div>
         </div>
-        <div id="tableBody" style="min-width: 49vw; min-height: 42vh; margin-top: 3%; margin-right: 8%;"></div>
+        <div id="tableBody" class="tBody"></div>
+    </div>
     </div>
 </body>

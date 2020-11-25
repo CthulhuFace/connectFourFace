@@ -1,6 +1,23 @@
+.fCont{
+    width: 100vw;
+    height: 100vh;
+}
+
+.centerMargin{
+    margin: 0 auto;
+}
+
+.tBody{
+    margin: 0 auto;
+    justify-content: center;
+    width: fit-content;
+}
+
 .cell {
-    height: 7vw;
-    width: 7vw;
+    max-width: 11vw;
+    max-height: 12.9vh;
+    height:7vmax;
+    width: 7vmax;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -19,8 +36,8 @@
 }
 
 .tableValueRed , .tableValueYell {
-    width: 52%;
-    height: 90%;
+    width: 50%;
+    height: 92%;
     transition: all 0.5s ease;
     position: relative;
 }
