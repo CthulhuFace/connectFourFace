@@ -5,6 +5,7 @@
     justify-content: center;
     align-items: center;
     border: 1px solid black;
+    transition: all 0s none;
 }
 
 .customBorder{
