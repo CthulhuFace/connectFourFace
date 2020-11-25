@@ -32,7 +32,7 @@ function startConnection() {
 
     if ($("#nameInput").val().trim()) {
         name = $("#nameInput").val();
-    } else name = "Player" + randomString();
+    } else name = "Player -" + randomString();
 
     if ($("#codeInput").val().trim()) {
         passcode = $("#codeInput").val();
@@ -97,11 +97,9 @@ function printBoard(board) {
     for (i = 0; i < 6; i++) {
         for (l = 0; l < 7; l++) {
             if (board[i][l] == 1) {
-                //$("#cell" + i + "." + l).attr("class", "tableValueYell");
                 document.getElementById("cell" + i + "." + l + "").className = "tableValueYell";
             }
             else if (board[i][l] == 2) {
-                //$("#cell" + i + "." + l).attr("class", "tableValueRed");
                 document.getElementById("cell" + i + "." + l + "").className = "tableValueRed";
             }
         }
@@ -117,9 +115,7 @@ function calculateResult(reason) {
     }
 }
 
-function randomCode(){
-    $("#codeInput").val(randomString);
-}
+function randomCode(){$("#codeInput").val(randomString);}
 
 function makeInv(componentName){$("#" + componentName).removeClass("visible").addClass("invisible");}
 
