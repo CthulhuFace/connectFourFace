@@ -19,7 +19,7 @@ function initBoard() {
     for (let h = 0; h < 6; h++) {
         var html = "<div id=\"tableRow" + h + "\" class=\"row no-gutters\">";
         for (let w = 0; w < 7; w++) {
-            html += "<div class=\"col\"><div class=\"cell\" onclick=\"sendChoice("+w+")\"><div class=\"customBorder\"id=\"cell" + h + "." + w + "\" ></div></div></div>";
+            html += "<div class=\"col\"><div class=\"cell\" onclick=\"sendChoice("+w+")\"><div id=\"cell" + h + "." + w + "\" ></div></div></div>";
         }
         html += "</div>";
         $("#tableBody").append(html);

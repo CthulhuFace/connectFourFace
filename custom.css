@@ -4,18 +4,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: all .7s ease;
+    border: 1px solid black;
 }
 
 .customBorder{
     height: 100%;
     width: 100%;
-    border: 1px solid black;
 }
 
-.cell:hover{
-    transform: rotateZ(180deg);
-}
 
 
 .colorDisplay {
@@ -60,8 +56,8 @@
 
 .tableValueRed:hover, .tableValueYell:hover {
     border-radius: 50px;
+    transform: rotateZ(180deg);
 }
-
 .tableValueRed:hover::before, .tableValueYell:hover::before, .tableValueRed:hover::after, .tableValueYell:hover::after{
     border-radius: 50px;
 }
