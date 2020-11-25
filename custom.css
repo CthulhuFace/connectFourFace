@@ -1,0 +1,94 @@
+.cell {
+    height: 7vw;
+    width: 7vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all .7s ease;
+}
+
+.customBorder{
+    height: 100%;
+    width: 100%;
+    border: 1px solid black;
+}
+
+.cell:hover{
+    transform: rotateZ(180deg);
+}
+
+
+.colorDisplay {
+    height: 8vw;
+    width: 8vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all .7s ease;
+}
+
+.tableValueRed , .tableValueYell {
+    width: 52%;
+    height: 90%;
+    transition: all 0.5s ease;
+    position: relative;
+}
+
+.tableValueYell {background-image: linear-gradient(19deg, #fffd75 0%, #c7ff2b 100%);}
+.tableValueRed {background-image: linear-gradient(19deg, #ff0000 0%, #ff4800 100%);}
+
+.tableValueYell::before, .tableValueYell::after, .tableValueRed::before, .tableValueRed::after {
+    content: "";
+    position: absolute;
+    background: inherit;
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+    transition: all 0.5s ease;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+
+.tableValueYell::before, .tableValueRed::before{
+    transform: rotateZ(60deg);
+}
+
+.tableValueYell::after, .tableValueRed::after{
+    transform: rotateZ(-60deg);
+}
+
+.tableValueRed:hover, .tableValueYell:hover {
+    border-radius: 50px;
+}
+
+.tableValueRed:hover::before, .tableValueYell:hover::before, .tableValueRed:hover::after, .tableValueYell:hover::after{
+    border-radius: 50px;
+}
+
+.animationLoop {
+    transform: rotateZ(180deg);
+    animation-name: rotateInner;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+
+
+.tableValueYell::before, .tableValueRed::before {
+    transform: rotateZ(60deg);
+}
+
+.tableValueYell::after, .tableValueRed::after {
+    transform: rotateZ(-60deg);
+}
+
+@keyframes rotateInner {
+    from {
+        transform: rotateZ(0deg)
+    }
+    to {
+        transform: rotateZ(360deg)
+    }
+}
